@@ -1,21 +1,40 @@
 ---
+import { Image } from 'astro:assets';
+
+import breakfast from '../assets/about/bnb-breakfast-winter.webp';
+import flower from '../assets/about/flower-051224-polaroid.webp';
+import flowerOne from '../assets/about/flower-051224-polaroid-1.webp';
+import house from '../assets/about/house.webp';
+import img20241125114014 from '../assets/about/img20241125114014.webp';
+import moon from '../assets/about/2024-05-13_21-07-50-moon-hdr1.webp';
+import prettySky from '../assets/about/2024-05-13_21-08-19-pretty-sky.webp';
+import photograph20240518 from '../assets/about/2024-05-18_20-27-18_0001.webp';
+import photograph17074098050 from '../assets/about/edriffles-1707409805-0.webp';
+import photograph17074098051 from '../assets/about/edriffles-1707409805-1.webp';
+import photograph17074135710 from '../assets/about/edriffles-1707413571-0.webp';
+import photograph17075365620 from '../assets/about/edriffles-1707536562-0.webp';
+import photograph17077937330 from '../assets/about/edriffles-1707793733-0.webp';
+import photograph17154567000 from '../assets/about/edriffles-1715456700-0.webp';
+import photograph17154570860 from '../assets/about/edriffles-1715457086-0.webp';
+import photograph17154870240 from '../assets/about/edriffles-1715487024-0.webp';
+
 const photos = [
-	{ src: '/images/about/img20241125114014.webp', alt: 'IMG20241125114014' },
-	{ src: '/images/about/flower-051224-polaroid.webp', alt: 'Flower' },
-	{ src: '/images/about/2024-05-13_21-07-50-moon-hdr1.webp', alt: 'Moon' },
-	{ src: '/images/about/2024-05-13_21-08-19-pretty-sky.webp', alt: 'Sky' },
-	{ src: '/images/about/2024-05-18_20-27-18_0001.webp', alt: 'Photograph' },
-	{ src: '/images/about/bnb-breakfast-winter.webp', alt: 'Breakfast in winter' },
-	{ src: '/images/about/edriffles-1707409805-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707409805-1.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707413571-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707536562-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707793733-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1715456700-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1715457086-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1715487024-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/flower-051224-polaroid-1.webp', alt: 'Flower' },
-	{ src: '/images/about/house.webp', alt: 'Sky' },
+	{ src: img20241125114014, alt: 'IMG20241125114014' },
+	{ src: flower, alt: 'Flower' },
+	{ src: moon, alt: 'Moon' },
+	{ src: prettySky, alt: 'Sky' },
+	{ src: photograph20240518, alt: 'Photograph' },
+	{ src: breakfast, alt: 'Breakfast in winter' },
+	{ src: photograph17074098050, alt: 'Photograph' },
+	{ src: photograph17074098051, alt: 'Photograph' },
+	{ src: photograph17074135710, alt: 'Photograph' },
+	{ src: photograph17075365620, alt: 'Photograph' },
+	{ src: photograph17077937330, alt: 'Photograph' },
+	{ src: photograph17154567000, alt: 'Photograph' },
+	{ src: photograph17154570860, alt: 'Photograph' },
+	{ src: photograph17154870240, alt: 'Photograph' },
+	{ src: flowerOne, alt: 'Flower' },
+	{ src: house, alt: 'Sky' },
 ];
 ---
 
@@ -23,7 +42,12 @@ const photos = [
 	{
 		photos.map((photo) => (
 			<figure>
-				<img src={photo.src} alt={photo.alt} loading="lazy" />
+				<Image
+					src={photo.src}
+					alt={photo.alt}
+					loading="lazy"
+					sizes="(min-width: 1400px) 25vw, (min-width: 851px) 33vw, (min-width: 521px) 50vw, 100vw"
+				/>
 			</figure>
 		))
 	}
@@ -39,7 +63,13 @@ const photos = [
 			</button>
 		</div>
 		<div class="photo-viewer-stage">
-			<img class="photo-viewer-image" id="photo-viewer-image" src="" alt="" />
+			<Image
+				class="photo-viewer-image"
+				id="photo-viewer-image"
+				src={photos[0].src}
+				alt={photos[0].alt}
+				loading="lazy"
+			/>
 		</div>
 		<div class="photo-viewer-status">
 			<button type="button" class="photo-viewer-nav photo-viewer-prev" data-viewer-prev>
@@ -68,6 +98,8 @@ const photos = [
 		const show = (index: number) => {
 			currentIndex = (index + photos.length) % photos.length;
 			const photo = photos[currentIndex];
+			imageEl.removeAttribute('srcset');
+			imageEl.removeAttribute('sizes');
 			imageEl.src = photo.src;
 			imageEl.alt = photo.alt;
 			titleEl.textContent = photo.alt || 'Photo';
