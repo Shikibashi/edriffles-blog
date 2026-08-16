@@ -19,14 +19,27 @@ const blog = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
 		z.object({
-			title: z.string().optional(),
+			title: z.string(),
 			description: z.string().optional(),
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
 			updatedDate: optionalDate,
 			heroImage: z.optional(image()),
 			heroImageAlt: z.string().optional(),
-		}),
+	}),
+});
+
+const about = defineCollection({
+	loader: glob({
+		base: './src/content',
+		pattern: 'about.md',
+		generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+	}),
+	schema: z.object({
+		title: z.string(),
+		description: z.string().optional(),
+		pubDate: z.coerce.date(),
+	}),
 });
 
 const gallery = defineCollection({
@@ -42,4 +55,4 @@ const gallery = defineCollection({
 		}),
 });
 
-export const collections = { blog, gallery };
+export const collections = { blog, gallery, about };

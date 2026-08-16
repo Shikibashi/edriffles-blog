@@ -79,20 +79,34 @@ the ignored `.sequoia-state.json` from records already on the PDS. The audit
 command performs read-only HTTP/XRPC requests and never applies remediation;
 append `--strict` when warnings should also fail CI.
 
-## Homepage images
+## Pages CMS
 
-Homepage images are managed through the hosted [Pages CMS](https://app.pagescms.org/).
+Content is managed through the hosted [Pages CMS](https://app.pagescms.org/).
 Sign in with GitHub, install the Pages CMS GitHub App for this repository, and
-open the **Homepage images** collection. Each entry only needs an image; alt
-text is optional but recommended. Pages CMS writes the image entry and its
-asset directly to GitHub, and the normal Cloudflare production build publishes
-it on `/`.
+open the repository. Pages CMS writes each saved entry directly to GitHub; the
+normal Cloudflare production build then publishes it.
 
-Image entries live under `src/content/gallery/` and do not create blog routes.
-Written posts remain separate, manually authored Markdown files under
-`src/content/blog/`. The repository's `.pages.yml` is the Pages CMS schema;
-there is no CMS server or `/admin` application to maintain. Sequoia remains the
-authority for Standard.site records and runs in the production build.
+### Homepage images
+
+Open **Homepage images** to add an image to the home page photo index. Each
+entry only needs an image; alt text is optional but recommended. Image entries
+live under `src/content/gallery/` and do not create blog routes.
+
+### Blog posts
+
+Open **Blog posts → New** to create a post. Fill in the title, publication date,
+and body; description, updated date, hero image, and hero image alt text are
+optional. Posts are stored under `src/content/blog/` and publish at
+`/blog/<title-slug>/`.
+
+### About page
+
+Open **About page** to edit the title, description, page date, and body. It is a
+single Markdown file at `src/content/about.md` and publishes at `/about/`.
+
+The repository's `.pages.yml` is the Pages CMS schema; there is no CMS server or
+`/admin` application to maintain. Sequoia remains the authority for
+Standard.site records and runs in the production build.
 
 ## 👀 Want to learn more?
 
