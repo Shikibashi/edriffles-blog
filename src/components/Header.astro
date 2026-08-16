@@ -1,11 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE_TITLE } from '../consts';
+import emblem from '../assets/edriffles-emblem.png';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
 	<a href="/" class="title">
-		<img class="site-emblem" src="/brand/edriffles-emblem.png" alt="" width="64" height="64" />
+		<Image class="site-emblem" src={emblem} alt="" width={64} height={64} />
 		<h1>{SITE_TITLE}</h1>
 	</a>
 	<nav>

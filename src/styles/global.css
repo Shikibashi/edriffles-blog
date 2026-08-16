@@ -913,6 +913,10 @@ a[rel="tag"]:hover {
   background: var(--ecw-panel);
 }
 
+.photo-index figure > a {
+  display: block;
+}
+
 /*
   Beat the ordinary Bear image treatment inside the gallery.
   No crop: every photograph keeps its real aspect ratio.
@@ -944,6 +948,10 @@ article .photo-index img,
 .photo-index img:hover {
   outline: 1px solid var(--ecw-purple);
   outline-offset: 2px;
+}
+
+.photo-index .photo-post-link img {
+  cursor: pointer;
 }
 
 .photo-index figcaption {
