@@ -5,6 +5,12 @@ media:
     output: ./assets
     rename: safe
     extensions: [jpg, jpeg, png, webp, avif, gif]
+  - name: blog
+    label: Blog images
+    input: src/content/blog/assets
+    output: ./assets
+    rename: safe
+    extensions: [jpg, jpeg, png, webp, avif, gif]
 
 content:
   - name: gallery
@@ -30,3 +36,78 @@ content:
         description: Describe the image for people using screen readers.
     view:
       fields: [image, alt]
+
+  - name: blog
+    label: Blog posts
+    type: collection
+    path: src/content/blog
+    format: yaml-frontmatter
+    filename:
+      template: "{slug}.md"
+      field: false
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: text
+        required: false
+      - name: pubDate
+        label: Publication date
+        type: date
+        required: true
+      - name: updatedDate
+        label: Updated date
+        type: date
+        required: false
+      - name: heroImage
+        label: Hero image
+        type: image
+        required: false
+        options:
+          media: blog
+          path: assets
+          extensions: [jpg, jpeg, png, webp, avif, gif]
+      - name: heroImageAlt
+        label: Hero image alt text
+        type: string
+        required: false
+        description: Describe the hero image for people using screen readers.
+      - name: body
+        label: Body
+        type: rich-text
+        options:
+          format: markdown
+    view:
+      fields: [title, pubDate, heroImage]
+      primary: title
+      sort: [pubDate]
+      default:
+        sort: pubDate
+        order: desc
+
+  - name: about
+    label: About page
+    type: file
+    path: src/content/about.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: text
+        required: false
+      - name: pubDate
+        label: Page date
+        type: date
+        required: true
+      - name: body
+        label: Body
+        type: rich-text
+        options:
+          format: markdown

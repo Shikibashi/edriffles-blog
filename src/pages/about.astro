@@ -1,31 +1,16 @@
 ---
+import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/BlogPost.astro';
+
+const about = await getEntry('about', 'about');
+
+if (!about) {
+	throw new Error('About content is missing from src/content/about.md');
+}
+
+const { Content } = await render(about);
 ---
 
-<Layout title="About" description="About Ty / Ed" pubDate={new Date('August 10 2026')}>
-	<p>I'm Ty, or Ed.</p>
-
-	<p>
-		I'm interested in political economy, individualist anarchism, radical liberalism, free
-		markets, globalization, decentralized technology, audio, and building weird things on the
-		web.
-	</p>
-
-	<p>
-		Politically, I describe myself as a globalist philosophical anarchist and pragmatic liberal
-		free enterpriser. My outlook centers on individual liberty, equal citizenship, free
-		association, open trade, cosmopolitanism, and skepticism toward concentrated power.
-	</p>
-
-	<p>
-		I build and experiment with projects around political ideology and measurement, AT Protocol,
-		decentralized publishing, web design, and other internet infrastructure. I also spend an
-		unreasonable amount of time thinking about headphones, HRTFs, old web interfaces, and obscure
-		political thinkers.
-	</p>
-
-	<p>
-		This site is where I put longer thoughts, research, project notes, and whatever else I'm
-		working on.
-	</p>
+<Layout {...about.data}>
+	<Content />
 </Layout>
