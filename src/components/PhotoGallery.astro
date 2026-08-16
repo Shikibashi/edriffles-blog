@@ -44,7 +44,7 @@ const photos = [
 			return [
 				{
 					src: post.data.heroImage,
-					alt: post.data.heroImageAlt || post.data.title,
+					alt: post.data.heroImageAlt || post.data.title || 'Image post',
 					href: `/blog/${post.id}/`,
 				},
 			];
@@ -54,14 +54,14 @@ const photos = [
 
 <section class="photo-index">
 	{
-		photos.map((photo) => (
+		photos.map((photo, index) => (
 			<figure>
 				{photo.href ? (
 					<a class="photo-post-link" href={photo.href} data-photo-post>
 						<Image
 							src={photo.src}
 							alt={photo.alt}
-							loading="lazy"
+							loading={index < 4 ? 'eager' : 'lazy'}
 							sizes="(min-width: 1400px) 25vw, (min-width: 851px) 33vw, (min-width: 521px) 50vw, 100vw"
 						/>
 					</a>
@@ -69,7 +69,7 @@ const photos = [
 					<Image
 						src={photo.src}
 						alt={photo.alt}
-						loading="lazy"
+						loading={index < 4 ? 'eager' : 'lazy'}
 						sizes="(min-width: 1400px) 25vw, (min-width: 851px) 33vw, (min-width: 521px) 50vw, 100vw"
 					/>
 				)}
@@ -93,7 +93,7 @@ const photos = [
 				id="photo-viewer-image"
 				src={photos[0].src}
 				alt={photos[0].alt}
-				loading="lazy"
+				loading="eager"
 			/>
 		</div>
 		<div class="photo-viewer-status">

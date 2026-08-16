@@ -22,7 +22,7 @@ const posts = (await getCollection('blog')).sort(
 			<h1>Blog</h1>
 			<ul class="blog-posts">
 				{
-					posts.map((post) => (
+					posts.map((post, index) => (
 						<li>
 							<a href={`/blog/${post.id}/`}>
 								{post.data.heroImage && (
@@ -30,10 +30,11 @@ const posts = (await getCollection('blog')).sort(
 										width={720}
 										height={360}
 										src={post.data.heroImage}
-										alt={post.data.heroImageAlt || post.data.title}
+										alt={post.data.heroImageAlt || post.data.title || 'Image post'}
+										loading={index === 0 ? 'eager' : 'lazy'}
 									/>
 								)}
-								<h4 class="post-title">{post.data.title}</h4>
+								{post.data.title && <h4 class="post-title">{post.data.title}</h4>}
 								<p class="post-meta">
 									<FormattedDate date={post.data.pubDate} />
 								</p>
