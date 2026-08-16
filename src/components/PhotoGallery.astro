@@ -1,0 +1,102 @@
+---
+const photos = [
+	{ src: '/images/about/img20241125114014.webp', alt: 'IMG20241125114014' },
+	{ src: '/images/about/flower-051224-polaroid.webp', alt: 'Flower' },
+	{ src: '/images/about/2024-05-13_21-07-50-moon-hdr1.webp', alt: 'Moon' },
+	{ src: '/images/about/2024-05-13_21-08-19-pretty-sky.webp', alt: 'Sky' },
+	{ src: '/images/about/2024-05-18_20-27-18_0001.webp', alt: 'Photograph' },
+	{ src: '/images/about/bnb-breakfast-winter.webp', alt: 'Breakfast in winter' },
+	{ src: '/images/about/edriffles-1707409805-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1707409805-1.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1707413571-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1707536562-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1707793733-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1715456700-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1715457086-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/edriffles-1715487024-0.webp', alt: 'Photograph' },
+	{ src: '/images/about/flower-051224-polaroid-1.webp', alt: 'Flower' },
+	{ src: '/images/about/house.webp', alt: 'Sky' },
+];
+---
+
+<section class="photo-index">
+	{
+		photos.map((photo) => (
+			<figure>
+				<img src={photo.src} alt={photo.alt} loading="lazy" />
+			</figure>
+		))
+	}
+</section>
+
+<dialog id="photo-viewer" aria-label="Photo viewer">
+	<div class="photo-viewer-shell">
+		<div class="photo-viewer-titlebar">
+			<span class="photo-viewer-title" id="photo-viewer-title"></span>
+			<span class="photo-viewer-count" id="photo-viewer-count"></span>
+			<button type="button" class="photo-viewer-close" data-viewer-close aria-label="Close">
+				&#215;
+			</button>
+		</div>
+		<div class="photo-viewer-stage">
+			<img class="photo-viewer-image" id="photo-viewer-image" src="" alt="" />
+		</div>
+		<div class="photo-viewer-status">
+			<button type="button" class="photo-viewer-nav photo-viewer-prev" data-viewer-prev>
+				&larr; Prev
+			</button>
+			<span class="photo-viewer-caption" id="photo-viewer-caption"></span>
+			<button type="button" class="photo-viewer-nav photo-viewer-next" data-viewer-next>
+				Next &rarr;
+			</button>
+		</div>
+	</div>
+</dialog>
+
+<script>
+	const gallery = document.querySelectorAll<HTMLImageElement>('.photo-index img');
+	const dialog = document.getElementById('photo-viewer') as HTMLDialogElement | null;
+	const imageEl = document.getElementById('photo-viewer-image') as HTMLImageElement | null;
+	const titleEl = document.getElementById('photo-viewer-title');
+	const countEl = document.getElementById('photo-viewer-count');
+	const captionEl = document.getElementById('photo-viewer-caption');
+
+	if (dialog && imageEl && titleEl && countEl && captionEl && gallery.length) {
+		const photos = Array.from(gallery);
+		let currentIndex = 0;
+
+		const show = (index: number) => {
+			currentIndex = (index + photos.length) % photos.length;
+			const photo = photos[currentIndex];
+			imageEl.src = photo.src;
+			imageEl.alt = photo.alt;
+			titleEl.textContent = photo.alt || 'Photo';
+			captionEl.textContent = photo.alt || '';
+			countEl.textContent = `${currentIndex + 1} / ${photos.length}`;
+		};
+
+		photos.forEach((photo, index) => {
+			photo.addEventListener('click', () => {
+				show(index);
+				dialog.showModal();
+			});
+		});
+
+		dialog.querySelector('[data-viewer-close]')?.addEventListener('click', () => dialog.close());
+		dialog
+			.querySelector('[data-viewer-prev]')
+			?.addEventListener('click', () => show(currentIndex - 1));
+		dialog
+			.querySelector('[data-viewer-next]')
+			?.addEventListener('click', () => show(currentIndex + 1));
+
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+
+		dialog.addEventListener('keydown', (event) => {
+			if (event.key === 'ArrowLeft') show(currentIndex - 1);
+			if (event.key === 'ArrowRight') show(currentIndex + 1);
+		});
+	}
+</script>

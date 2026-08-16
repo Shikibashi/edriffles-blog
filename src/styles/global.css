@@ -1,141 +1,1366 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+  PALETTE LOCK — exact original Edriffles Bear colors
+
+  LIGHT
+  bg             #d6d9e8
+  canvas         #c7ccdf
+  panel          #f4f3eb
+  panel-deep     #e1e3ee
+  panel-raised   #ffffff
+  ink            #11132d
+  ink-secondary  #24274a
+  muted          #5e6480
+  border         #626a9c
+  border-strong  #383f78
+  rule           #9da2bd
+  link           #004fa3
+  visited        #65349a
+  purple         #5530a3
+  pink           #a82378
+  yellow         #a66c00
+  green          #08775f
+  info/cyan      #006f88
+  focus          #5c2aac
+
+  DARK
+  bg             #050719
+  canvas         #070a2e
+  panel          #12144b
+  panel-deep     #0b0d38
+  panel-raised   #1c1e67
+  ink            #f9f3ff
+  ink-secondary  #dfe6ff
+  muted          #aeb6e9
+  border         #6675c8
+  border-strong  #7787e8
+  rule           #343960
+  link           #6ff4ff
+  visited        #c594ff
+  purple         #9c68ff
+  pink           #ff76d7
+  yellow         #ffd45c
+  green          #23d5a6
+  focus          #ffd45c
+  selection      #6d55db
+*/
+
+/*
+  EDRIFFLES COMPUTER WEB
+  Bear Blog theme for edriffles.us
+
+  Design intent:
+  - computer-native, web-native, continuationist late-90s/early-2000s lineage
+  - explicit links and controls
+  - square geometry, visible borders, hard shadows
+  - Georgia identity, Verdana content, Courier New metadata
+  - compact Page Mode, not a fake desktop
+  - system light/dark mode with the same structure in both
+*/
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+  color-scheme: light dark;
+
+  /* light environment */
+  --ecw-bg: #d6d9e8;
+  --ecw-canvas: #c7ccdf;
+  --ecw-panel: #f4f3eb;
+  --ecw-panel-deep: #e1e3ee;
+  --ecw-panel-raised: #ffffff;
+
+  --ecw-ink: #11132d;
+  --ecw-ink-secondary: #24274a;
+  --ecw-muted: #5e6480;
+
+  --ecw-border: #626a9c;
+  --ecw-border-strong: #383f78;
+  --ecw-rule: #9da2bd;
+
+  --ecw-link: #004fa3;
+  --ecw-link-visited: #65349a;
+  --ecw-purple: #5530a3;
+  --ecw-pink: #a82378;
+  --ecw-yellow: #a66c00;
+  --ecw-green: #08775f;
+
+  --ecw-success: #08775f;
+  --ecw-warning: #8a5900;
+  --ecw-error: #9b245f;
+  --ecw-info: #006f88;
+  --ecw-focus: #5c2aac;
+  --ecw-focus-outer: #5c2aac;
+  --ecw-focus-inner: #ffffff;
+
+  --ecw-control-face: #d4d0c8;
+  --ecw-control-highlight: #ffffff;
+  --ecw-control-shadow: #777777;
+  --ecw-control-text: #111111;
+
+  --ecw-hard-shadow: rgba(17, 19, 45, 0.48);
+  --ecw-selection-bg: #383f78;
+  --ecw-selection-ink: #ffffff;
+
+  --ecw-display: Georgia, "Times New Roman", serif;
+  --ecw-content: Verdana, Arial, sans-serif;
+  --ecw-system: "Courier New", Courier, monospace;
+
+  --ecw-page-width: 1060px;
+  --ecw-reading-width: 74ch;
+  --ecw-radius: 1px;
+  --ecw-hit-min: 30px;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ecw-bg: #050719;
+    --ecw-canvas: #070a2e;
+    --ecw-panel: #12144b;
+    --ecw-panel-deep: #0b0d38;
+    --ecw-panel-raised: #1c1e67;
+
+    --ecw-ink: #f9f3ff;
+    --ecw-ink-secondary: #dfe6ff;
+    --ecw-muted: #aeb6e9;
+
+    --ecw-border: #6675c8;
+    --ecw-border-strong: #7787e8;
+    --ecw-rule: #343960;
+
+    --ecw-link: #6ff4ff;
+    --ecw-link-visited: #c594ff;
+    --ecw-purple: #9c68ff;
+    --ecw-pink: #ff76d7;
+    --ecw-yellow: #ffd45c;
+    --ecw-green: #23d5a6;
+
+    --ecw-success: #23d5a6;
+    --ecw-warning: #ffd45c;
+    --ecw-error: #ff76a8;
+    --ecw-info: #6ff4ff;
+    --ecw-focus: #ffd45c;
+    --ecw-focus-outer: #ffd45c;
+    --ecw-focus-inner: #050719;
+
+    --ecw-control-face: #bdbdbd;
+    --ecw-control-highlight: #f6f6f6;
+    --ecw-control-shadow: #666666;
+    --ecw-control-text: #111111;
+
+    --ecw-hard-shadow: rgba(0, 0, 0, 0.78);
+    --ecw-selection-bg: #6d55db;
+    --ecw-selection-ink: #ffffff;
+  }
+}
+
+/* ---------- base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--ecw-bg);
+  background-image:
+    linear-gradient(var(--ecw-rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ecw-rule) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
+}
+
 body {
-	font-family: var(--font-atkinson);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+  width: min(var(--ecw-page-width), calc(100% - 32px));
+  margin: 18px auto 42px;
+  padding: 0;
+  color: var(--ecw-ink);
+  background: transparent;
+  font-family: var(--ecw-content);
+  font-size: 16px;
+  line-height: 1.62;
+  text-rendering: optimizeLegibility;
 }
+
+::selection {
+  color: var(--ecw-selection-ink);
+  background: var(--ecw-selection-bg);
+}
+
+/* ---------- site identity / masthead ---------- */
+
+.title {
+  display: block;
+  width: fit-content;
+  margin: 0 0 6px;
+  color: var(--ecw-purple);
+  text-decoration: none;
+}
+
+.title:visited {
+  color: var(--ecw-purple);
+}
+
+.title:hover {
+  color: var(--ecw-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.title h1,
+body > header h1 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--ecw-display);
+  font-size: clamp(2rem, 5vw, 3.65rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-shadow: 2px 2px 0 var(--ecw-panel-raised);
+}
+
+/* ---------- navigation ---------- */
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0 8px;
+  padding: 6px;
+  border: 1px solid var(--ecw-border-strong);
+  background: var(--ecw-panel-deep);
+  box-shadow: 2px 2px 0 var(--ecw-hard-shadow);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+nav a,
+nav a:visited {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--ecw-hit-min);
+  padding: 5px 9px 4px;
+  border: 1px solid var(--ecw-control-shadow);
+  border-top-color: var(--ecw-control-highlight);
+  border-left-color: var(--ecw-control-highlight);
+  border-radius: 0;
+  color: var(--ecw-control-text);
+  background: var(--ecw-control-face);
+  box-shadow: 1px 1px 0 var(--ecw-control-shadow);
+  text-decoration: none;
+}
+
+nav a:hover {
+  outline: 1px solid var(--ecw-focus);
+  outline-offset: 1px;
+  color: var(--ecw-control-text);
+  background: var(--ecw-panel-raised);
+}
+
+nav a:active,
+nav a[aria-current="page"] {
+  transform: translate(1px, 1px);
+  border-top-color: var(--ecw-control-shadow);
+  border-left-color: var(--ecw-control-shadow);
+  border-right-color: var(--ecw-control-highlight);
+  border-bottom-color: var(--ecw-control-highlight);
+  box-shadow: none;
+}
+
+/* ---------- primary page surface ---------- */
+
+main,
+.home,
+.blog,
+.post,
+.page,
+.subscribe,
+.not-found {
+  border-radius: var(--ecw-radius);
+}
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+  margin-top: 10px;
+  padding: clamp(16px, 3vw, 30px);
+  border: 2px solid var(--ecw-border-strong);
+  background: var(--ecw-panel);
+  box-shadow: 4px 4px 0 var(--ecw-hard-shadow);
 }
+
+/* If Bear's page root itself is the main surface, avoid ugly double framing. */
+main > .home,
+main > .blog,
+main > .post,
+main > .page,
+main > .subscribe,
+main > .not-found {
+  border: 0;
+  box-shadow: none;
+}
+
+/* ---------- typography ---------- */
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+  color: var(--ecw-ink);
+  scroll-margin-top: 16px;
 }
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+main h1 {
+  margin: 0 0 0.65em;
+  font-family: var(--ecw-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+main h2 {
+  margin: 2em 0 0.55em;
+  padding: 5px 7px 4px;
+  border: 1px solid var(--ecw-border-strong);
+  border-left-width: 5px;
+  color: var(--ecw-ink);
+  background: var(--ecw-panel-deep);
+  font-family: var(--ecw-system);
+  font-size: 14px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+main h3,
+main h4,
+main h5,
+main h6 {
+  margin: 1.7em 0 0.5em;
+  font-family: var(--ecw-system);
+  line-height: 1.3;
+}
+
+main h3 {
+  padding-bottom: 3px;
+  border-bottom: 1px dotted var(--ecw-border);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+p {
+  margin: 0.85em 0 1em;
+}
+
+.post p,
+.page p,
+article p {
+  max-width: var(--ecw-reading-width);
+}
+
+strong {
+  color: var(--ecw-ink);
+}
+
+small,
+time,
+.meta,
+.tags,
+.post-meta {
+  color: var(--ecw-muted);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ---------- links ---------- */
+
+a {
+  color: var(--ecw-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:visited {
+  color: var(--ecw-link-visited);
+}
+
+a:hover {
+  color: var(--ecw-pink);
+  text-decoration-thickness: 2px;
+}
+
+a:active {
+  color: var(--ecw-error);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--ecw-focus-inner);
+  outline-offset: 0;
+  box-shadow: 0 0 0 4px var(--ecw-focus-outer);
+}
+
+/* ---------- lists and post indexes ---------- */
+
+ul,
+ol {
+  padding-left: 1.6em;
+}
+
+li::marker {
+  color: var(--ecw-purple);
+}
+
+.blog-posts {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  border-top: 2px solid var(--ecw-border-strong);
+  list-style: none;
+}
+
+.blog-posts li {
+  margin: 0;
+  padding: 9px 7px;
+  border-bottom: 1px dotted var(--ecw-border);
+}
+
+.blog-posts li:nth-child(even) {
+  background: color-mix(in srgb, var(--ecw-panel-deep) 58%, transparent);
+}
+
+.blog-posts li:hover {
+  background: var(--ecw-panel-deep);
+}
+
+.blog-posts a {
+  font-weight: 700;
+}
+
+/* ---------- quotations ---------- */
+
+blockquote {
+  margin: 1.4rem 0;
+  padding: 10px 14px;
+  border: 1px solid var(--ecw-border);
+  border-left: 5px solid var(--ecw-purple);
+  background: var(--ecw-panel-deep);
+  color: var(--ecw-ink-secondary);
+}
+
+blockquote > :first-child {
+  margin-top: 0;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- rules ---------- */
+
+hr {
+  height: 0;
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px dotted var(--ecw-border-strong);
+}
+
+/* ---------- code ---------- */
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--ecw-system);
+}
+
+:not(pre) > code {
+  padding: 0.1em 0.3em;
+  border: 1px solid var(--ecw-rule);
+  background: var(--ecw-panel-deep);
+  color: var(--ecw-ink-secondary);
+  font-size: 0.92em;
+}
+
+pre,
+.highlight,
+.code {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.35rem 0;
+  padding: 12px 14px;
+  border: 1px solid var(--ecw-border-strong);
+  background: var(--ecw-panel-deep);
+  color: var(--ecw-ink-secondary);
+  box-shadow: inset 1px 1px 0 var(--ecw-hard-shadow);
+  font-size: 13px;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid var(--ecw-control-shadow);
+  border-top-color: var(--ecw-control-highlight);
+  border-left-color: var(--ecw-control-highlight);
+  color: var(--ecw-control-text);
+  background: var(--ecw-control-face);
+  box-shadow: 1px 1px 0 var(--ecw-control-shadow);
+  font-size: 0.82em;
+}
+
+/* ---------- tables ---------- */
+
+table {
+  width: 100%;
+  margin: 1.4rem 0;
+  border-collapse: collapse;
+  border: 1px solid var(--ecw-border-strong);
+  background: var(--ecw-panel-raised);
+  font-size: 0.94rem;
+}
+
+th,
+td {
+  padding: 6px 8px;
+  border-right: 1px solid var(--ecw-rule);
+  border-bottom: 1px dotted var(--ecw-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--ecw-ink);
+  background: var(--ecw-panel-deep);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+tr:hover td {
+  background: var(--ecw-panel-deep);
+}
+
+/* ---------- photography / media ---------- */
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+main img,
+article img,
+.post img,
+.page img {
+  display: block;
+  margin: 1.3rem 0;
+  padding: 3px;
+  border: 1px solid var(--ecw-border-strong);
+  background: var(--ecw-panel-raised);
+  box-shadow: 3px 3px 0 var(--ecw-hard-shadow);
+}
+
+figure {
+  margin: 1.5rem 0 2rem;
+}
+
+figure img {
+  margin-bottom: 0;
+}
+
+figcaption {
+  max-width: var(--ecw-reading-width);
+  margin-top: 7px;
+  color: var(--ecw-muted);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ---------- forms / Bear subscription UI ---------- */
+
+label,
+legend {
+  color: var(--ecw-ink);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+fieldset {
+  margin: 1.2rem 0;
+  padding: 12px;
+  border: 1px solid var(--ecw-border-strong);
+}
+
+input,
+textarea,
+select {
+  max-width: 100%;
+  padding: 7px 8px;
+  border: 2px inset var(--ecw-control-face);
+  border-radius: 0;
+  color: var(--ecw-ink);
+  background: var(--ecw-panel-raised);
+  font: inherit;
+}
+
+textarea {
+  width: 100%;
+  min-height: 9rem;
+  resize: vertical;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+  min-block-size: var(--ecw-hit-min);
+  padding: 6px 10px;
+  border: 1px solid var(--ecw-control-shadow);
+  border-top-color: var(--ecw-control-highlight);
+  border-left-color: var(--ecw-control-highlight);
+  border-radius: 0;
+  color: var(--ecw-control-text);
+  background: var(--ecw-control-face);
+  box-shadow: 2px 2px 0 var(--ecw-control-shadow);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  outline: 1px solid var(--ecw-focus);
+  outline-offset: 1px;
+}
+
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active {
+  transform: translate(1px, 1px);
+  border-top-color: var(--ecw-control-shadow);
+  border-left-color: var(--ecw-control-shadow);
+  border-right-color: var(--ecw-control-highlight);
+  border-bottom-color: var(--ecw-control-highlight);
+  box-shadow: none;
+}
+
+/* ---------- details / disclosures ---------- */
+
+details {
+  margin: 1rem 0;
+  border: 1px solid var(--ecw-border);
+  background: var(--ecw-panel-deep);
+}
+
+summary {
+  padding: 7px 9px;
+  color: var(--ecw-link);
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+details[open] > :not(summary) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  margin-top: 14px;
+  padding: 8px 9px;
+  border-top: 1px dotted var(--ecw-border-strong);
+  color: var(--ecw-muted);
+  font-family: var(--ecw-system);
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+footer a {
+  color: var(--ecw-link);
+}
+
+/* ---------- optional Bear-ish utility elements ---------- */
+
+.tags a,
+a[rel="tag"] {
+  display: inline-block;
+  margin: 2px 3px 2px 0;
+  padding: 2px 5px;
+  border: 1px solid var(--ecw-border);
+  color: var(--ecw-link);
+  background: var(--ecw-panel-deep);
+  font-family: var(--ecw-system);
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.tags a:hover,
+a[rel="tag"]:hover {
+  border-color: var(--ecw-focus);
+  text-decoration: underline;
+}
+
+/* ---------- responsive capability adaptation ---------- */
+
+@media (max-width: 720px) {
+  html {
+    background-size: 24px 24px;
+  }
+
+  body {
+    width: calc(100% - 16px);
+    margin-top: 8px;
+    font-size: 15px;
+  }
+
+  .title h1,
+  body > header h1 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  nav {
+    gap: 4px;
+    padding: 5px;
+  }
+
+  nav a,
+  nav a:visited {
+    padding: 6px 8px;
+  }
+
+  main {
+    margin-top: 7px;
+    padding: 14px 12px 18px;
+    box-shadow: 2px 2px 0 var(--ecw-hard-shadow);
+  }
+
+  main h2 {
+    margin-top: 1.7em;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  main img,
+  article img,
+  .post img,
+  .page img {
+    box-shadow: 2px 2px 0 var(--ecw-hard-shadow);
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    width: min(var(--ecw-page-width), calc(100% - 64px));
+  }
+
+  main {
+    padding: 30px 36px 34px;
+  }
+
+  /* Wider monitors reveal more useful horizontal room for media and tables,
+     while prose remains constrained by --ecw-reading-width. */
+  table,
+  pre,
+  .highlight,
+  .code,
+  figure,
+  main > img,
+  article > img {
+    max-width: 100%;
+  }
+}
+
+/* ---------- motion / accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  :root {
+    --ecw-bg: #ffffff;
+    --ecw-panel: #ffffff;
+    --ecw-panel-deep: #ffffff;
+    --ecw-panel-raised: #ffffff;
+    --ecw-ink: #000000;
+    --ecw-ink-secondary: #111111;
+    --ecw-muted: #444444;
+    --ecw-border: #777777;
+    --ecw-border-strong: #222222;
+    --ecw-rule: #aaaaaa;
+    --ecw-link: #000000;
+    --ecw-link-visited: #000000;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  body {
+    width: auto;
+    margin: 0;
+    font-size: 11pt;
+  }
+
+  nav,
+  footer {
+    box-shadow: none;
+  }
+
+  main {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--ecw-system);
+    font-size: 0.8em;
+    font-weight: 400;
+  }
+}
+
+
+/* ========================================================================
+   EDRIFFLES PHOTO INDEX + PHOTO VIEWER
+   Uses the ORIGINAL ECW palette above without substituting new brand colors.
+   ======================================================================== */
+
+
+/* ---------- photo index / contact sheet ---------- */
+
+.photo-index {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 10px;
+
+  width: 100%;
+  max-width: none;
+  margin: 4px 0 10px;
+  padding: 0;
+}
+
+.photo-index figure {
+  min-width: 0;
+  margin: 0;
+  padding: 5px;
+
+  border: 1px solid var(--ecw-border);
+  border-radius: 0;
+
+  background: var(--ecw-panel-deep);
+  box-shadow: 3px 3px 0 var(--ecw-hard-shadow);
+}
+
+.photo-index figure:hover {
+  border-color: var(--ecw-border-strong);
+  background: var(--ecw-panel);
+}
+
+/*
+  Beat the ordinary Bear image treatment inside the gallery.
+  No crop: every photograph keeps its real aspect ratio.
+*/
+main .photo-index img,
+article .photo-index img,
+.home .photo-index img,
+.page .photo-index img,
+.post .photo-index img,
+.photo-index img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+  max-width: none;
+
+  margin: 0;
+  padding: 0;
+
+  border: 1px solid var(--ecw-border-strong);
+  border-radius: 0;
+
+  background: var(--ecw-panel-raised);
+  box-shadow: none;
+
+  cursor: zoom-in;
+}
+
+.photo-index img:hover {
+  outline: 1px solid var(--ecw-purple);
+  outline-offset: 2px;
+}
+
+.photo-index figcaption {
+  max-width: none;
+  margin: 6px 1px 1px;
+
+  color: var(--ecw-muted);
+
+  font-family: var(--ecw-system);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+
+/* ---------- native dialog photo viewer ---------- */
+
+#photo-viewer {
+  width: min(96vw, 1600px);
+  height: min(94vh, 1100px);
+
+  max-width: none;
+  max-height: none;
+
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+
+  border: 2px solid var(--ecw-border-strong);
+  border-radius: 0;
+
+  color: var(--ecw-ink);
+  background: var(--ecw-panel-deep);
+
+  box-shadow: 6px 6px 0 var(--ecw-hard-shadow);
+}
+
+#photo-viewer::backdrop {
+  background: rgba(0, 0, 0, 0.86);
+}
+
+.photo-viewer-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/* ---------- viewer title band ---------- */
+
+.photo-viewer-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 40px;
+  padding: 4px 5px 4px 10px;
+
+  border-bottom: 1px solid var(--ecw-border-strong);
+
+  color: var(--ecw-ink-secondary);
+  background: var(--ecw-panel-raised);
+
+  font-family: var(--ecw-system);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.photo-viewer-title {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  color: var(--ecw-purple);
+}
+
+.photo-viewer-count {
+  flex: 0 0 auto;
+
+  color: var(--ecw-muted);
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ---------- viewer close button ---------- */
+
+.photo-viewer-close {
+  display: inline-grid;
+  place-items: center;
+
+  inline-size: 32px;
+  min-block-size: var(--ecw-hit-min);
+
+  padding: 0;
+
+  border: 1px solid var(--ecw-control-shadow);
+  border-top-color: var(--ecw-control-highlight);
+  border-left-color: var(--ecw-control-highlight);
+  border-radius: 0;
+
+  color: var(--ecw-control-text);
+  background: var(--ecw-control-face);
+
+  box-shadow: 1px 1px 0 var(--ecw-control-shadow);
+
+  font-family: var(--ecw-system);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.photo-viewer-close:hover {
+  outline: 1px solid var(--ecw-focus);
+  outline-offset: 1px;
+}
+
+.photo-viewer-close:active {
+  transform: translate(1px, 1px);
+
+  border-top-color: var(--ecw-control-shadow);
+  border-left-color: var(--ecw-control-shadow);
+  border-right-color: var(--ecw-control-highlight);
+  border-bottom-color: var(--ecw-control-highlight);
+
+  box-shadow: none;
+}
+
+
+/* ---------- viewer image stage ---------- */
+
+.photo-viewer-stage {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px;
+
+  border-top: 1px solid var(--ecw-rule);
+  border-bottom: 1px solid var(--ecw-border);
+
+  /*
+    Only original palette colors:
+      canvas + rule.
+    The check pattern remains deliberately faint.
+  */
+  background-color: var(--ecw-canvas);
+  background-image:
+    linear-gradient(
+      45deg,
+      color-mix(in srgb, var(--ecw-rule) 30%, transparent) 25%,
+      transparent 25%,
+      transparent 75%,
+      color-mix(in srgb, var(--ecw-rule) 30%, transparent) 75%
+    ),
+    linear-gradient(
+      45deg,
+      color-mix(in srgb, var(--ecw-rule) 30%, transparent) 25%,
+      transparent 25%,
+      transparent 75%,
+      color-mix(in srgb, var(--ecw-rule) 30%, transparent) 75%
+    );
+
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+}
+
+.photo-viewer-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 100%;
+
+  margin: auto;
+  padding: 3px;
+
+  object-fit: contain;
+
+  border: 1px solid var(--ecw-border-strong);
+  border-radius: 0;
+
+  background: var(--ecw-panel-raised);
+  box-shadow: 3px 3px 0 var(--ecw-hard-shadow);
+}
+
+
+/* ---------- viewer lower status band ---------- */
+
+.photo-viewer-status {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 44px;
+  padding: 5px;
+
+  border-top: 1px solid var(--ecw-border-strong);
+
+  background: var(--ecw-panel);
+}
+
+.photo-viewer-caption {
+  min-width: 0;
+  overflow: hidden;
+
+  color: var(--ecw-ink-secondary);
+
+  font-family: var(--ecw-system);
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.photo-viewer-nav {
+  min-block-size: var(--ecw-hit-min);
+  padding: 5px 10px;
+
+  border: 1px solid var(--ecw-control-shadow);
+  border-top-color: var(--ecw-control-highlight);
+  border-left-color: var(--ecw-control-highlight);
+  border-radius: 0;
+
+  color: var(--ecw-control-text);
+  background: var(--ecw-control-face);
+
+  box-shadow: 1px 1px 0 var(--ecw-control-shadow);
+
+  font-family: var(--ecw-system);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.photo-viewer-nav:hover {
+  outline: 1px solid var(--ecw-focus);
+  outline-offset: 1px;
+}
+
+.photo-viewer-nav:active {
+  transform: translate(1px, 1px);
+
+  border-top-color: var(--ecw-control-shadow);
+  border-left-color: var(--ecw-control-shadow);
+  border-right-color: var(--ecw-control-highlight);
+  border-bottom-color: var(--ecw-control-highlight);
+
+  box-shadow: none;
+}
+
+
+/* ---------- photo index responsive behavior ---------- */
+
+@media (min-width: 1400px) {
+  body {
+    --ecw-page-width: 1280px;
+  }
+
+  .photo-index {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .photo-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .photo-index {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .photo-index figure {
+    padding: 4px;
+  }
+
+  #photo-viewer {
+    width: 100vw;
+    height: 100dvh;
+
+    border-inline: 0;
+  }
+
+  .photo-viewer-stage {
+    padding: 5px;
+  }
+
+  .photo-viewer-status {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-viewer-caption {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    padding: 2px 4px;
+  }
+
+  .photo-viewer-prev {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .photo-viewer-next {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+
+/* Coarse-pointer environments get a larger target without changing the
+   desktop visual language. */
+@media (any-pointer: coarse) {
+  :root {
+    --ecw-hit-min: 44px;
+  }
+
+  .photo-viewer-close {
+    inline-size: 44px;
+  }
+}
+
+
+/* ---------- increased contrast ---------- */
+
+@media (prefers-contrast: more) {
+  :root {
+    --ecw-border: var(--ecw-border-strong);
+    --ecw-muted: var(--ecw-ink-secondary);
+  }
+
+  .photo-index figure,
+  #photo-viewer,
+  .photo-viewer-image {
+    border-width: 2px;
+  }
+}
+
+
+/* ---------- forced colors ---------- */
+
+@media (forced-colors: active) {
+  html,
+  body,
+  main,
+  nav,
+  footer,
+  .photo-index figure,
+  #photo-viewer,
+  .photo-viewer-titlebar,
+  .photo-viewer-stage,
+  .photo-viewer-status {
+    color: CanvasText;
+    background: Canvas;
+    background-image: none;
+    border-color: CanvasText;
+    box-shadow: none;
+    text-shadow: none;
+  }
+
+  main .photo-index img,
+  article .photo-index img,
+  .home .photo-index img,
+  .page .photo-index img,
+  .post .photo-index img,
+  .photo-index img,
+  .photo-viewer-image {
+    border-color: CanvasText;
+    background: Canvas;
+    box-shadow: none;
+  }
+
+  .photo-viewer-close,
+  .photo-viewer-nav {
+    color: ButtonText;
+    background: ButtonFace;
+    border: 1px solid ButtonText;
+    box-shadow: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+}
+
+
+/* ---------- photo printing ---------- */
+
+@media print {
+  .photo-index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8pt;
+  }
+
+  .photo-index figure,
+  .photo-index img {
+    box-shadow: none;
+  }
+
+  #photo-viewer {
+    display: none !important;
+  }
 }

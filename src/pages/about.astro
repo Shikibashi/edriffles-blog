@@ -1,24 +1,5 @@
 ---
 import Layout from '../layouts/BlogPost.astro';
-
-const photos = [
-	{ src: '/images/about/img20241125114014.webp', alt: 'IMG20241125114014' },
-	{ src: '/images/about/flower-051224-polaroid.webp', alt: 'Flower' },
-	{ src: '/images/about/2024-05-13_21-07-50-moon-hdr1.webp', alt: 'Moon' },
-	{ src: '/images/about/2024-05-13_21-08-19-pretty-sky.webp', alt: 'Sky' },
-	{ src: '/images/about/2024-05-18_20-27-18_0001.webp', alt: 'Photograph' },
-	{ src: '/images/about/bnb-breakfast-winter.webp', alt: 'Breakfast in winter' },
-	{ src: '/images/about/edriffles-1707409805-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707409805-1.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707413571-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707536562-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1707793733-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1715456700-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1715457086-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/edriffles-1715487024-0.webp', alt: 'Photograph' },
-	{ src: '/images/about/flower-051224-polaroid-1.webp', alt: 'Flower' },
-	{ src: '/images/about/house.webp', alt: 'Sky' },
-];
 ---
 
 <Layout title="About" description="About Ty / Ed" pubDate={new Date('August 10 2026')}>
@@ -47,34 +28,4 @@ const photos = [
 		This site is where I put longer thoughts, research, project notes, and whatever else I'm
 		working on.
 	</p>
-
-	<section class="photo-index">
-		{
-			photos.map((photo) => (
-				<figure>
-					<img src={photo.src} alt={photo.alt} loading="lazy" />
-				</figure>
-			))
-		}
-	</section>
 </Layout>
-
-<style>
-	.photo-index {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-		gap: 0.75em;
-		margin: 1.5em 0;
-	}
-	.photo-index figure {
-		margin: 0;
-	}
-	.photo-index img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		aspect-ratio: 1 / 1;
-		object-fit: cover;
-		border-radius: 8px;
-	}
-</style>
