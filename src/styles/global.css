@@ -189,11 +189,21 @@ body {
 /* ---------- site identity / masthead ---------- */
 
 .title {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: fit-content;
   margin: 0 0 6px;
   color: var(--ecw-purple);
   text-decoration: none;
+}
+
+.site-emblem {
+  display: block;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
 
 .title:visited {
@@ -742,6 +752,11 @@ a[rel="tag"]:hover {
   .title h1,
   body > header h1 {
     font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .site-emblem {
+    width: 52px;
+    height: 52px;
   }
 
   nav {

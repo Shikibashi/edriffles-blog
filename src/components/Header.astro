@@ -4,7 +4,10 @@ import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
-	<a href="/" class="title"><h1>{SITE_TITLE}</h1></a>
+	<a href="/" class="title">
+		<img class="site-emblem" src="/brand/edriffles-emblem.png" alt="" width="64" height="64" />
+		<h1>{SITE_TITLE}</h1>
+	</a>
 	<nav>
 		<HeaderLink href="/">Home</HeaderLink>
 		<HeaderLink href="/blog">Blog</HeaderLink>
