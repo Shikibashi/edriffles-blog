@@ -2,6 +2,11 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const optionalDate = z.preprocess(
+	(value) => (value === '' ? undefined : value),
+	z.coerce.date().optional(),
+);
+
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
 	loader: glob({
@@ -19,7 +24,7 @@ const blog = defineCollection({
 			description: z.string().optional(),
 			// Transform string to Date object
 			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
+			updatedDate: optionalDate,
 			heroImage: z.optional(image()),
 			heroImageAlt: z.string().optional(),
 		}),
