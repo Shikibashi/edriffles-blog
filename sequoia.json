@@ -1,0 +1,13 @@
+{
+  "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
+  "siteUrl": "https://edriffles.us",
+  "contentDir": "./src/content/blog",
+  "outputDir": "./dist",
+  "pathPrefix": "/blog",
+  "publicationUri": "at://did:plc:3ijrhre2q5e4tt2f4ph2sneo/site.standard.publication/3mt6pt5txll27",
+  "frontmatter": {
+    "publishDate": "pubDate",
+    "coverImage": "heroImage"
+  },
+  "publishContent": true
+}
