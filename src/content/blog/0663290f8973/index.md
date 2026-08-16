@@ -4,5 +4,5 @@ description: ''
 pubDate: 2026-08-16
 updatedDate: ''
 heroImage: chart (2).png
-heroImageAlt: ''
+heroImageAlt: lastfm weekly august 14
 ---
