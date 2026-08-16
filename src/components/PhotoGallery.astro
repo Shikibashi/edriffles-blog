@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 
 import breakfast from '../assets/about/bnb-breakfast-winter.webp';
@@ -35,6 +36,19 @@ const photos = [
 	{ src: photograph17154870240, alt: 'Photograph' },
 	{ src: flowerOne, alt: 'Flower' },
 	{ src: house, alt: 'Sky' },
+	...(await getCollection('blog'))
+		.filter((post) => post.data.heroImage)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+		.flatMap((post) => {
+			if (!post.data.heroImage) return [];
+			return [
+				{
+					src: post.data.heroImage,
+					alt: post.data.heroImageAlt || post.data.title,
+					href: `/blog/${post.id}/`,
+				},
+			];
+		}),
 ];
 ---
 
@@ -42,12 +56,23 @@ const photos = [
 	{
 		photos.map((photo) => (
 			<figure>
-				<Image
-					src={photo.src}
-					alt={photo.alt}
-					loading="lazy"
-					sizes="(min-width: 1400px) 25vw, (min-width: 851px) 33vw, (min-width: 521px) 50vw, 100vw"
-				/>
+				{photo.href ? (
+					<a class="photo-post-link" href={photo.href} data-photo-post>
+						<Image
+							src={photo.src}
+							alt={photo.alt}
+							loading="lazy"
+							sizes="(min-width: 1400px) 25vw, (min-width: 851px) 33vw, (min-width: 521px) 50vw, 100vw"
+						/>
+					</a>
+				) : (
+					<Image
+						src={photo.src}
+						alt={photo.alt}
+						loading="lazy"
+						sizes="(min-width: 1400px) 25vw, (min-width: 851px) 33vw, (min-width: 521px) 50vw, 100vw"
+					/>
+				)}
 			</figure>
 		))
 	}
@@ -109,6 +134,7 @@ const photos = [
 
 		photos.forEach((photo, index) => {
 			photo.addEventListener('click', () => {
+				if (photo.closest('[data-photo-post]')) return;
 				show(index);
 				dialog.showModal();
 			});

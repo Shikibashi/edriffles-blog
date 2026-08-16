@@ -27,6 +27,6 @@ collections:
       - { label: Description, name: description, widget: text }
       - { label: Publication date, name: pubDate, widget: datetime, type: date }
       - { label: Updated date, name: updatedDate, widget: datetime, type: date, required: false }
-      - { label: Index / hero image, name: heroImage, widget: image, required: false }
+      - { label: Homepage / hero image, name: heroImage, widget: image, required: false }
       - { label: Image alt text, name: heroImageAlt, widget: string, required: false }
       - { label: Body, name: body, widget: markdown }
