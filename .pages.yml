@@ -1,0 +1,32 @@
+media:
+  - name: gallery
+    label: Homepage images
+    input: src/content/gallery/assets
+    output: ./assets
+    rename: safe
+    extensions: [jpg, jpeg, png, webp, avif, gif]
+
+content:
+  - name: gallery
+    label: Homepage images
+    type: collection
+    path: src/content/gallery
+    filename:
+      template: "{year}{month}{day}-{hour}{minute}{second}.md"
+      field: false
+    fields:
+      - name: image
+        label: Image
+        type: image
+        required: true
+        options:
+          media: gallery
+          path: assets
+          extensions: [jpg, jpeg, png, webp, avif, gif]
+      - name: alt
+        label: Image alt text
+        type: string
+        required: false
+        description: Describe the image for people using screen readers.
+    view:
+      fields: [image, alt]
