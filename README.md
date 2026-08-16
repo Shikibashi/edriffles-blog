@@ -92,8 +92,10 @@ In Sveltia, choose **Homepage / hero image** to upload the image that should
 appear on the homepage photo index, blog index, and post page, then provide
 **Image alt text**. The uploaded file is stored beside its post, so Astro
 resolves it through the `image()` content schema and optimizes it during the
-build. Images inserted in the Body field are also stored beside the post and
-rendered from Markdown.
+build. Title, Description, and Body are optional for image-only posts. Sveltia
+generates a short unique URL slug automatically when Title is blank, and the
+image alt text is used for the tile and page metadata. Images inserted in the
+Body field are also stored beside the post and rendered from Markdown.
 Saving a post to the `master` branch triggers the normal Cloudflare production
 build, including the Sequoia publish/inject steps. Keep Sequoia as the
 authority for Standard.site records; Sveltia only edits the Markdown and its

@@ -18,15 +18,16 @@ collections:
     label_singular: Blog post
     folder: /src/content/blog
     path: '{{slug}}/index'
+    slug: '{{uuid_short}}'
     media_folder: ''
     public_folder: ''
     preview_path: /blog/{{slug}}/
     thumbnail: heroImage
     fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Description, name: description, widget: text }
+      - { label: Title, name: title, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
       - { label: Publication date, name: pubDate, widget: datetime, type: date }
       - { label: Updated date, name: updatedDate, widget: datetime, type: date, required: false }
       - { label: Homepage / hero image, name: heroImage, widget: image, required: false }
       - { label: Image alt text, name: heroImageAlt, widget: string, required: false }
-      - { label: Body, name: body, widget: markdown }
+      - { label: Body, name: body, widget: markdown, required: false }
