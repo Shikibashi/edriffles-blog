@@ -88,11 +88,15 @@ configuration contains no credentials; Sveltia will ask for GitHub
 authentication in the browser.
 
 Blog posts are created as page bundles under `src/content/blog/<slug>/index.md`.
-Hero images are stored beside their post, so Astro can process them through the
-existing `image()` content schema. Saving a post to the `master` branch triggers
-the normal Cloudflare production build, including the Sequoia publish/inject
-steps. Keep Sequoia as the authority for Standard.site records; Sveltia only
-edits the Markdown and its adjacent assets.
+In Sveltia, choose **Index / hero image** to upload the image that should appear
+on both the blog index and the post page, then provide **Image alt text**. The
+uploaded file is stored beside its post, so Astro resolves it through the
+`image()` content schema and optimizes it during the build. Images inserted in
+the Body field are also stored beside the post and rendered from Markdown.
+Saving a post to the `master` branch triggers the normal Cloudflare production
+build, including the Sequoia publish/inject steps. Keep Sequoia as the
+authority for Standard.site records; Sveltia only edits the Markdown and its
+adjacent assets.
 
 ## 👀 Want to learn more?
 
