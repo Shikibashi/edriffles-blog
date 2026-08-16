@@ -4,7 +4,7 @@
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/og/fallback.jpg';
-import { SITE_TITLE } from '../consts';
+import { PUBLICATION_URI, SITE_TITLE } from '../consts';
 
 interface Props {
 	title: string;
@@ -26,6 +26,7 @@ const { title, description, image = FallbackImage, type = 'website' } = Astro.pr
 <link rel="icon" type="image/png" href="/favicon-16.png?v=20260816-2" sizes="16x16" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260816-2" />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="site.standard.publication" href={PUBLICATION_URI} />
 <link
 	rel="alternate"
 	type="application/rss+xml"

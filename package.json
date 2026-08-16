@@ -7,9 +7,16 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run build:astro",
+    "build:astro": "astro build",
+    "build:production": "npm run build:astro && npm run sequoia:publish && npm run sequoia:inject",
+    "build:cloudflare": "node scripts/build-cloudflare.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sequoia:publish": "sequoia publish",
+    "sequoia:inject": "sequoia inject --output dist",
+    "sequoia:sync": "sequoia sync",
+    "audit:standard-site": "python3 scripts/audit.py"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

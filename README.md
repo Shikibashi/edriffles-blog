@@ -49,10 +49,35 @@ All commands are run from the root of the project, from a terminal:
 | :------------------------ | :----------------------------------------------- |
 | `npm install`             | Installs dependencies                            |
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run build`           | Build Astro output locally to `./dist/`          |
+| `npm run build:production` | Build, publish Standard.site records, and inject verification links |
+| `npm run build:cloudflare` | Select the production or preview build for Cloudflare Pages |
 | `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run audit:standard-site` | Run the read-only Standard.site interoperability audit |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Standard.site and Cloudflare Pages
+
+The Cloudflare Pages build command should be `npm run build:cloudflare` and the
+build output directory should be `dist`. On the configured production branch
+(currently `master`), the command runs this pipeline:
+
+```text
+astro build → sequoia publish → sequoia inject --output dist
+```
+
+Set `ATP_IDENTIFIER` and `ATP_APP_PASSWORD` as encrypted variables in the
+Cloudflare Pages **Production** environment only. Preview builds use Astro only,
+even if those variables are accidentally present there. If the production
+branch changes, set the non-secret `CF_PAGES_PRODUCTION_BRANCH` variable to the
+new branch name in both Cloudflare environments; it defaults to `master`.
+
+`sequoia publish` and `sequoia sync` are the only commands intended to interact
+with AT Protocol records. Use `npm run sequoia:sync` manually to reconstruct
+the ignored `.sequoia-state.json` from records already on the PDS. The audit
+command performs read-only HTTP/XRPC requests and never applies remediation;
+append `--strict` when warnings should also fail CI.
 
 ## 👀 Want to learn more?
 
