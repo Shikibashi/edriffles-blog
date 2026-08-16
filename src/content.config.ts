@@ -8,12 +8,11 @@ const optionalDate = z.preprocess(
 );
 
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
+	// Load written Markdown and MDX posts from the `src/content/blog/` directory.
 	loader: glob({
 		base: './src/content/blog',
 		pattern: '**/*.{md,mdx}',
-		// Sveltia stores posts as <slug>/index.md so images can live beside them.
-		// Keep the public content ID (and therefore the URL) equal to <slug>.
+		// Keep the public content ID equal to the file path.
 		generateId: ({ entry }) =>
 			entry.replace(/\.(?:md|mdx)$/, '').replace(/\/index$/, ''),
 	}),
@@ -30,4 +29,17 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const gallery = defineCollection({
+	loader: glob({
+		base: './src/content/gallery',
+		pattern: '**/*.md',
+		generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+	}),
+	schema: ({ image }) =>
+		z.object({
+			image: image(),
+			alt: z.string().optional(),
+		}),
+});
+
+export const collections = { blog, gallery };

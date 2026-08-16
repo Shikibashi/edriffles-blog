@@ -79,27 +79,20 @@ the ignored `.sequoia-state.json` from records already on the PDS. The audit
 command performs read-only HTTP/XRPC requests and never applies remediation;
 append `--strict` when warnings should also fail CI.
 
-## Sveltia CMS
+## Homepage images
 
-The Sveltia CMS editor is available at `/admin/index.html`. Run
-`astro dev --background` and open `http://localhost:4321/admin/index.html` for
-local editing, or use the same path on the deployed site. The public
-configuration contains no credentials; Sveltia will ask for GitHub
-authentication in the browser.
+Homepage images are managed through the hosted [Pages CMS](https://app.pagescms.org/).
+Sign in with GitHub, install the Pages CMS GitHub App for this repository, and
+open the **Homepage images** collection. Each entry only needs an image; alt
+text is optional but recommended. Pages CMS writes the image entry and its
+asset directly to GitHub, and the normal Cloudflare production build publishes
+it on `/`.
 
-Blog posts are created as page bundles under `src/content/blog/<slug>/index.md`.
-In Sveltia, choose **Homepage / hero image** to upload the image that should
-appear on the homepage photo index, blog index, and post page, then provide
-**Image alt text**. The uploaded file is stored beside its post, so Astro
-resolves it through the `image()` content schema and optimizes it during the
-build. Title, Description, and Body are optional for image-only posts. Sveltia
-generates a short unique URL slug automatically when Title is blank, and the
-image alt text is used for the tile and page metadata. Images inserted in the
-Body field are also stored beside the post and rendered from Markdown.
-Saving a post to the `master` branch triggers the normal Cloudflare production
-build, including the Sequoia publish/inject steps. Keep Sequoia as the
-authority for Standard.site records; Sveltia only edits the Markdown and its
-adjacent assets.
+Image entries live under `src/content/gallery/` and do not create blog routes.
+Written posts remain separate, manually authored Markdown files under
+`src/content/blog/`. The repository's `.pages.yml` is the Pages CMS schema;
+there is no CMS server or `/admin` application to maintain. Sequoia remains the
+authority for Standard.site records and runs in the production build.
 
 ## 👀 Want to learn more?
 
