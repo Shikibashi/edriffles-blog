@@ -7,6 +7,11 @@ backend:
   repo: Shikibashi/edriffles-blog
   branch: master
 
+# Sveltia requires a global media folder. The blog collection overrides this
+# with entry-relative folders below, so post images still live beside index.md.
+media_folder: /public/media
+public_folder: /media
+
 collections:
   - name: blog
     label: Blog posts
